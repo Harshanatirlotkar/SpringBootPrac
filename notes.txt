@@ -1,0 +1,21 @@
+
+
+1. Git commit - Set SSH for Git - https://www.youtube.com/watch?v=xkhUH9Fx2z8
+2. ControllerAdvice and Data Validation- https://www.bezkoder.com/spring-boot-restcontrolleradvice/
+   Data validation - https://www.geeksforgeeks.org/spring-boot-data-and-field-validation-using-jakarta-validation-constraints/
+3. Env profiling - https://www.geeksforgeeks.org/what-is-spring-boot-profiles/
+4. Lombok
+5. Mysql - https://www.geeksforgeeks.org/spring-boot-crud-operations-using-mysql-database/?ref=lbp
+6.
+
+completablefuture
+JWT
+Unit testing
+
+Mokito
+Logging
+
+swagger
+actuator
+Dev tool
+Intelli Shortcut
