@@ -5,17 +5,102 @@
    Data validation - https://www.geeksforgeeks.org/spring-boot-data-and-field-validation-using-jakarta-validation-constraints/
 3. Env profiling - https://www.geeksforgeeks.org/what-is-spring-boot-profiles/
 4. Lombok
+
+@Data: Generates getters, setters, toString(), equals(), and hashCode() methods.
+@NoArgsConstructor: Generates a no-argument constructor.
+@AllArgsConstructor: Generates a constructor with all fields as parameters.
+
+=======Using @Slf4j Inside an Interface===== https://www.javatodev.com/lombok-spring-boot/#lombok-builder-for-easy-builder-pattern-in-java
+Lombok @Slf4J is valid for classes and enumerations by design, But we can use @Slf4j inside a java interface if we needed.
+Here I’m using default methods which introduced with java 8 which allows us to have methods inside an interface,
+
+package com.javatodev.api.Util;
+import lombok.extern.slf4j.Slf4j;
+public interface RandomWork {
+    @Slf4j
+    final class LoggerForRandomWork {}
+
+    default void doTheRandomLog () {
+        LoggerForRandomWork.log.info("Doing the random Log using Lombok Slf4J");
+    }
+}
+
 5. Mysql - https://www.geeksforgeeks.org/spring-boot-crud-operations-using-mysql-database/?ref=lbp
-6.
+6. Swagger
+    https://www.youtube.com/watch?v=fxxDEYZDxeI
+    https://springdoc.org/
+    http://localhost:8082/v3/api-docs
+    http://localhost:8082/swagger-ui/index.html
+7. Logging todo generate log file
 
+Default log format
+2025-01-30T20:03:33.691+05:30  INFO 12856 --- [myrest] [nio-8082-exec-1] c.h.m.controller.DepartmentController    : INFO log using Lombok Slf4j
+2025-01-30T20:03:33.692+05:30 ERROR 12856 --- [myrest] [nio-8082-exec-1] c.h.m.controller.DepartmentController    : ERROR log using Lombok Slf4j
+2025-01-30T20:03:33.692+05:30  WARN 12856 --- [myrest] [nio-8082-exec-1] c.h.m.controller.DepartmentController    : WARN log using Lombok Slf4j
+
+After log pattern property
+logging.pattern.console=%d{"yyyy/MM/dd HH:mm:ss,SSS"} [%p] [%t] %M\\(%F:%L\\) - %msg%n
+
+2025/01/30 20:08:29,326 [INFO] [http-nio-8082-exec-1] test(DepartmentController.java:28) - INFO log using Lombok Slf4j
+2025/01/30 20:08:29,327 [ERROR] [http-nio-8082-exec-1] test(DepartmentController.java:29) - ERROR log using Lombok Slf4j
+2025/01/30 20:08:29,328 [WARN] [http-nio-8082-exec-1] test(DepartmentController.java:30) - WARN log using Lombok Slf4j
+
+===== way 1
+import lombok.extern.slf4j.Slf4j;
+@Slf4j
+public class LoggerTestUtil {
+
+    public static void writeLogs () {
+        log.info("INFO log using Lombok Slf4j ");
+        log.error("ERROR log using Lombok Slf4j ");
+        log.warn("WARN log using Lombok Slf4j ");
+    }
+}
+
+===== way 2
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+public class LoggerTestUtil implements RandomWork {
+    private static final Logger log = LoggerFactory.getLogger(LoggerTestUtil.class);
+
+    public LoggerTestUtil() {
+    }
+
+    public static void writeLogs() {
+        log.info("INFO log using Lombok Slf4j ");
+        log.error("ERROR log using Lombok Slf4j ");
+        log.warn("WARN log using Lombok Slf4j ");
+    }
+}
+
+
+8. Dev tool
+https://www.youtube.com/watch?v=VvSRXkltI2c
+https://www.youtube.com/watch?v=NF8MlHoAlyg
+
+setting to enable dev tool
+In intellij  File –> Setting –> Build, Execution, Deployment –> Compiler –> check the Build project automatically
+                               -> advance setting  -> check Allow auto-make to start even if developed application is currently running
+
+
+
+
+splunk
+sonar qube
+sonar lint
 completablefuture
+Spring security
+Spring security with database
 JWT
+Oauth
 Unit testing
-
 Mokito
-Logging
-
-swagger
 actuator
-Dev tool
 Intelli Shortcut
+spring cache
+spring scheduling
+spring batch
+Excecutable framework
+process big file in multipart

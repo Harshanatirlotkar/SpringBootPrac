@@ -4,6 +4,8 @@ package com.harsh.myrest.controller;
 import com.harsh.myrest.entity.Department;
 import com.harsh.myrest.service.DepartmentService;
 import jakarta.validation.Valid;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,16 +14,22 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/v1/")
 public class DepartmentController {
+
+    private static final Logger log = LoggerFactory.getLogger(DepartmentController.class);
     // Annotation
     @Autowired
     private DepartmentService departmentService;
 
 
-    @GetMapping("/test")
+    @GetMapping("/welcome")
     public ResponseEntity<String> test()
     {
-        return new ResponseEntity<>("Hello from my test app", HttpStatus.OK);
+        log.info("INFO log using Lombok Slf4j ");
+        log.error("ERROR log using Lombok Slf4j ");
+        log.warn("WARN log using Lombok Slf4j ");
+        return new ResponseEntity<>("Hello from my test app ++++++++", HttpStatus.OK);
     }
 
     // Save operation
