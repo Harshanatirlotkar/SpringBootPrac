@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -29,7 +30,7 @@ public class DepartmentController {
         log.info("INFO log using Lombok Slf4j ");
         log.error("ERROR log using Lombok Slf4j ");
         log.warn("WARN log using Lombok Slf4j ");
-        return new ResponseEntity<>("Hello from my test app ++++++++", HttpStatus.OK);
+        return new ResponseEntity<>("Hello from my test app", HttpStatus.OK);
     }
 
     // Save operation
@@ -43,10 +44,19 @@ public class DepartmentController {
 
     // Read operation
     @GetMapping("/departments")
+    @PreAuthorize("hasAuthority('admin')")
     public ResponseEntity<List<Department>> fetchDepartmentList()
     {
         List<Department> departments = departmentService.fetchDepartmentList();
         return new ResponseEntity<>(departments, HttpStatus.OK);
+    }
+
+    @GetMapping("/department/{id}")
+    @PreAuthorize("hasAuthority('user')")
+    public ResponseEntity<Department> fetchDepartmentById(@PathVariable("id") Long departmentId)
+    {
+        Department department1 = departmentService.getDepById(departmentId);
+        return new ResponseEntity<>(department1, HttpStatus.OK);
     }
 
     // Update operation

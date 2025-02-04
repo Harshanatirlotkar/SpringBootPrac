@@ -84,6 +84,15 @@ setting to enable dev tool
 In intellij  File –> Setting –> Build, Execution, Deployment –> Compiler –> check the Build project automatically
                                -> advance setting  -> check Allow auto-make to start even if developed application is currently running
 
+9.JPA
+
+Unique column value - https://www.baeldung.com/jpa-unique-constraints
+Customize query & pagination - https://www.baeldung.com/spring-data-jpa-query
+Create sequence at table level and use for id
+
+
+
+
 
 
 
@@ -91,6 +100,7 @@ splunk
 sonar qube
 sonar lint
 completablefuture
+@Async
 Spring security
 Spring security with database
 JWT
@@ -104,3 +114,17 @@ spring scheduling
 spring batch
 Excecutable framework
 process big file in multipart
+JPA with customize query
+graphina
+JMeter
+Microservice with Kafka
+
+
+https://www.geeksforgeeks.org/upload-multiple-files-in-spring-boot-using-jpa-thymeleaf-multipart/?ref=lbp
+
+api to upload file and store on server location
+
+
+
+
+

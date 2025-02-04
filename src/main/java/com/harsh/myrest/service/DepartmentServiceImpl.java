@@ -58,6 +58,11 @@ public class DepartmentServiceImpl implements DepartmentService {
     }
 
     @Override
+    public Department getDepById(Long departmentId) {
+        return departmentRepository.findById(departmentId).orElseThrow(() -> new DepNotFoundException("Not found department with id = " + departmentId));
+    }
+
+    @Override
     public void deleteDepartmentById(Long departmentId) {
         departmentRepository.deleteById(departmentId);
     }

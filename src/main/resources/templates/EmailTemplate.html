@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title th:text="${subject}">Email Template</title>
+    <style>
+        body {
+            font-family: Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f2f2f2;
+        }
+        .container {
+            font-size: 16px;
+            width: 70%;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            border-bottom: 1px solid #eee;
+            padding-bottom: 20px;
+            margin-bottom: 20px;
+        }
+        .brand {
+            font-size: 1.5em;
+            color: green !important;
+            text-decoration: none;
+            font-weight: 800;
+        }
+        p {
+            margin-bottom: 15px;
+        }
+        .footer {
+            color: #aaa;
+            font-size: 0.8em;
+            font-weight: 300;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <a href="#" class="brand">My Test App</a>
+    </div>
+    <h3>Hello, <span th:text="${name}"></span>!</h3>
+    <p th:text="${message}"></p>
+    <br><br>
+    <div class="footer">
+        <p>Thank You</p>
+        <p>Harshana.</p>
+    </div>
+
+    <div>
+
+        <table border="1">
+            <thead>
+            <tr class="headings">
+                <th th:each="header: ${headers}" class="column-title" th:text="${header}" />
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="departments : ${departments}">
+                <td th:text="${departments.departmentId}"></td>
+                <td th:text="${departments.departmentName}"></td>
+                <td th:text="${departments.departmentAddress}"></td>
+                <td th:text="${departments.departmentCode}"></td>
+                <td th:text="${departments.depMobile}"></td>
+                <td th:text="${departments.depEmail}"></td>
+
+            </tr>
+            </tbody>
+        </table>
+
+
+<!--        <tr class="headings">-->
+<!--            <th class="column-title">departmentName</th>-->
+<!--            <th class="column-title">departmentAddress</th>-->
+<!--            <th class="column-title">departmentCode</th>-->
+<!--            <th class="column-title">depMobile</th>-->
+<!--            <th class="column-title">depEmail</th>-->
+<!--        </tr>-->
+<!--        </thead>-->
+<!--        <tbody>-->
+<!--        <tr class="even pointer" th:each="row: ${rows}" id="tablerow">-->
+<!--            <td th:each="field: ${row}" th:text="${field.value}" />-->
+<!--        </tr>-->
+<!--        </tbody>-->
+    </div>
+</div>
+</body>
+</html>
