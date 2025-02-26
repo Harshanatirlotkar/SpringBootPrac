@@ -1,8 +1,10 @@
 package com.harsh.myrest.controller;
 
 
+import com.harsh.myrest.entity.AuthRequest;
 import com.harsh.myrest.entity.Department;
 import com.harsh.myrest.service.DepartmentService;
+import com.harsh.myrest.service.JwtService;
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,7 +25,11 @@ public class DepartmentController {
     @Autowired
     private DepartmentService departmentService;
 
+    @Autowired
+    private JwtService jwtService;
 
+
+    //http://localhost:8082/v1/welcome
     @GetMapping("/welcome")
     public ResponseEntity<String> test()
     {
@@ -42,7 +48,7 @@ public class DepartmentController {
         return new ResponseEntity<>(depDB,HttpStatus.CREATED);
     }
 
-    // Read operation
+    // http://localhost:8082/v1/departments
     @GetMapping("/departments")
     @PreAuthorize("hasAuthority('admin')")
     public ResponseEntity<List<Department>> fetchDepartmentList()
@@ -51,6 +57,7 @@ public class DepartmentController {
         return new ResponseEntity<>(departments, HttpStatus.OK);
     }
 
+    //http://localhost:8082/v1/department/1
     @GetMapping("/department/{id}")
     @PreAuthorize("hasAuthority('user')")
     public ResponseEntity<Department> fetchDepartmentById(@PathVariable("id") Long departmentId)
@@ -79,4 +86,14 @@ public class DepartmentController {
                 departmentId);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+
+
+    // http://localhost:8082/v1/authenticate
+    @PostMapping("/authenticate")
+    public ResponseEntity<String> authenticateRequest(@RequestBody AuthRequest authRequest)
+    {
+        String token = jwtService.generateToken(authRequest.getUsername());
+        return new ResponseEntity<>(token,HttpStatus.CREATED);
+    }
+
 }

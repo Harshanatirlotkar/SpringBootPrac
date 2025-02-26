@@ -41,4 +41,18 @@ public class UserControllerTest {
                 .andExpect(MockMvcResultMatchers.jsonPath("$.id").exists())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.roles").exists());
     }
+
+    @Test
+    public void testCreateUserWithoutPassword() throws Exception {
+        var user = new UserInfo();
+        user.setName("alisha");
+        user.setPassword("");
+        user.setRoles("user");
+
+        mockMvc.perform(
+                        MockMvcRequestBuilders.post("/user/add")
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content(objectMapper.writeValueAsString(user)))
+                .andExpect(MockMvcResultMatchers.status().isInternalServerError());
+    }
 }

@@ -46,13 +46,13 @@ public class SecurityConfig {
 //                .and().formLogin()
 //                .and().build();
 
-//        http.csrf(AbstractHttpConfigurer::disable)
-//                .authorizeHttpRequests((requests) -> requests
-//                        .requestMatchers( "/v1/welcome", "/user/**").permitAll()
-//                                .requestMatchers("/v1/**").authenticated()).formLogin();
+        http.csrf(AbstractHttpConfigurer::disable)
+                .authorizeHttpRequests((requests) -> requests
+                        .requestMatchers( "/v1/welcome", "/v1/authenticate","/user/**").permitAll()
+                                .requestMatchers("/v1/**").authenticated()).formLogin();
 
 
-        http.csrf().disable().authorizeHttpRequests((requests) -> requests.anyRequest().permitAll()).formLogin();
+        //http.csrf().disable().authorizeHttpRequests((requests) -> requests.anyRequest().permitAll()).formLogin();
 
         return http.build();
     }

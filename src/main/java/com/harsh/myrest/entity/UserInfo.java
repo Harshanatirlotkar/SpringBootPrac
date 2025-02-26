@@ -20,6 +20,8 @@ public class UserInfo {
 
     @NotEmpty
     private String name;
+
+    @NotEmpty
     private String email;
     private String password;
     private String roles;
