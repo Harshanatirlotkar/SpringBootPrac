@@ -33,6 +33,7 @@ public class DepartmentController {
     @GetMapping("/welcome")
     public ResponseEntity<String> test()
     {
+        System.out.println("testttt");
         log.info("INFO log using Lombok Slf4j ");
         log.error("ERROR log using Lombok Slf4j ");
         log.warn("WARN log using Lombok Slf4j ");
